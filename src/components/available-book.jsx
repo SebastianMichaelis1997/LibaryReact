@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Book extends Component {
+class AvailableBook extends Component {
   /*handleIncrement = () => {
     this.setState({ value: this.state.value + 1 });
   };
@@ -11,7 +11,7 @@ class Book extends Component {
   render() {
     return (
       <div>
-        <h4>{this.props.book.name} </h4>
+        <span>{this.props.book.name}</span>
         <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
         <button
           onClick={() => this.props.onIncrement(this.props.book)}
@@ -31,6 +31,13 @@ class Book extends Component {
         >
           Delete
         </button>
+
+        <button
+          onClick={() => this.props.onBorrow(this.props.book)}
+          className="btn btn-warning btn-sm m-2"
+        >
+          Lend
+        </button>
       </div>
     );
   }
@@ -47,4 +54,4 @@ class Book extends Component {
   }
 }
 
-export default Book;
+export default AvailableBook;

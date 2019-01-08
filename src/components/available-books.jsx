@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import Book from "./book";
+import Book from "./available-book";
 class AvailableBooks extends Component {
   render() {
     const {
       onReset,
       availableBooks,
+      onBorrow,
       onDecrement,
       onDelete,
       onIncrement,
@@ -12,6 +13,7 @@ class AvailableBooks extends Component {
     } = this.props;
     return (
       <div>
+        <h3>Available books</h3>
         <button onClick={onReset} className="btn btn-primary btn-sm m-2">
           Reset
         </button>
@@ -19,7 +21,7 @@ class AvailableBooks extends Component {
           onClick={() => {
             onAdd(document.getElementById("book-name").value);
           }}
-          className="btn-primary btn-sm m-2"
+          className="btn btn-primary btn-sm m-2"
         >
           Create Book
         </button>
@@ -31,6 +33,7 @@ class AvailableBooks extends Component {
             onIncrement={onIncrement}
             onDecrement={onDecrement}
             onReset={onReset}
+            onBorrow={onBorrow}
             book={book}
           />
         ))}
