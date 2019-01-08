@@ -64,16 +64,9 @@ class App extends Component {
 
       const index = availableBooks.indexOf(book);
       const foundBook = availableBooks[index];
-
-    if(foundBook.value == 0){
-      window.alert('This book is not available at the moment')
-      return;
-    }
-
-    foundBook.value--;        
-
-    borrowedBooks.push(foundBook)
-    this.setState({ availableBooks, borrowedBooks });
+      foundBook.value--;
+      borrowedBooks.push(foundBook)
+      this.setState({ availableBooks, borrowedBooks });
     };
   
     handleReturn = book => {

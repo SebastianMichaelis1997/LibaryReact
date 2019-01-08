@@ -35,6 +35,7 @@ class AvailableBook extends Component {
         <button
           onClick={() => this.props.onBorrow(this.props.book)}
           className="btn btn-warning btn-sm m-2"
+          disabled={this.props.book.value==0}
         >
           Lend
         </button>
