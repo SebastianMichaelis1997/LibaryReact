@@ -5,6 +5,7 @@ import AvailableBooks from "./components/available-books";
 import BorrowedBooks from "./components/borrowed-books"
 
 class App extends Component {
+  //Single Point Of Truth
   state = {
     availableBooks: [
       //id: number, name: text, value: number
@@ -20,8 +21,17 @@ class App extends Component {
 
   componentDidMount() {
     //Ajax Call
-    console.log("App is gesattelt");
+    console.log("App is aufgesetzt");
   }
+
+  componentWillUnmount(){
+    console.log("Aufräumen von Komponentenbzüglichen Objekten (Serververbindung etc)");
+  }
+
+  componentDidUpdate(){
+    console.log("App wurde geupdatet");
+  }
+
   handleDecrement = counter => {
     const availableBooks = [...this.state.availableBooks];
     const index = availableBooks.indexOf(counter);
@@ -29,6 +39,7 @@ class App extends Component {
     availableBooks[index].value--;
     this.setState({ availableBooks });
   };
+
   handleIncrement = book => {
     const availableBooks = [...this.state.availableBooks];
     const index = availableBooks.indexOf(book);
@@ -67,9 +78,9 @@ class App extends Component {
       foundBook.value--;
       borrowedBooks.push(foundBook)
       this.setState({ availableBooks, borrowedBooks });
-    };
+  };
   
-    handleReturn = book => {
+  handleReturn = book => {
       let availableBooks = [...this.state.availableBooks];
       let borrowedBooks = [...this.state.borrowedBooks];
 
@@ -83,15 +94,15 @@ class App extends Component {
       foundBook.value++;
 
       this.setState({availableBooks, borrowedBooks});
-    }
+  }
 
-    handleLost = book => {
+  handleLost = book => {
       let borrowedBooks = [... this.state.borrowedBooks];
       borrowedBooks = borrowedBooks.filter(b => {
         return b.id !== book.id;
       })
       this.setState({borrowedBooks})
-    }
+  }
 
   render() {
     console.log("App Rendered");

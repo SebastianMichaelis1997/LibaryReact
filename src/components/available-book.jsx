@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 
 class AvailableBook extends Component {
-  /*handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
-  handleDecrement = () => {
-    this.setState({ value: this.state.value - 1 });
-  };*/
 
   render() {
     return (
       <div>
+        //Buchtitel
         <span>{this.props.book.name}</span>
         <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
         <button
@@ -45,7 +40,7 @@ class AvailableBook extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 ";
-    classes += this.props.book.count === 0 ? "badge-warning" : "badge-primary";
+    classes += this.props.book.value === 0 ? "badge-warning" : "badge-primary";
     return classes;
   }
 
