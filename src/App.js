@@ -14,24 +14,6 @@ class App extends Component {
     currentId: 0
   };
 
-  constructor() {
-    super();
-    console.log("App - Constrcutor");
-  }
-
-  componentDidMount() {
-    //Ajax Call
-    console.log("App is aufgesetzt");
-  }
-
-  componentWillUnmount(){
-    console.log("Aufräumen von Komponentenbzüglichen Objekten (Serververbindung etc)");
-  }
-
-  componentDidUpdate(){
-    console.log("App wurde geupdatet");
-  }
-
   handleDecrement = counter => {
     const availableBooks = [...this.state.availableBooks];
     const index = availableBooks.indexOf(counter);
@@ -70,38 +52,38 @@ class App extends Component {
   };
 
   handleBorrow = book => {
-      let availableBooks = [...this.state.availableBooks];
-      const borrowedBooks = [... this.state.borrowedBooks];
+    let availableBooks = [...this.state.availableBooks];
+    const borrowedBooks = [... this.state.borrowedBooks];
 
-      const index = availableBooks.indexOf(book);
-      const foundBook = availableBooks[index];
-      foundBook.value--;
-      borrowedBooks.push(foundBook)
-      this.setState({ availableBooks, borrowedBooks });
+    const index = availableBooks.indexOf(book);
+    const foundBook = availableBooks[index];
+    foundBook.value--;
+    borrowedBooks.push(foundBook)
+    this.setState({ availableBooks, borrowedBooks });
   };
-  
+
   handleReturn = book => {
-      let availableBooks = [...this.state.availableBooks];
-      let borrowedBooks = [...this.state.borrowedBooks];
+    let availableBooks = [...this.state.availableBooks];
+    let borrowedBooks = [...this.state.borrowedBooks];
 
-      const index = borrowedBooks.indexOf(book);
-      const foundBook = borrowedBooks[index];
+    const index = borrowedBooks.indexOf(book);
+    const foundBook = borrowedBooks[index];
 
-      borrowedBooks = borrowedBooks.filter(b => {
-        return b.id !== book.id;
-      })
+    borrowedBooks = borrowedBooks.filter(b => {
+      return b.id !== book.id;
+    })
 
-      foundBook.value++;
+    foundBook.value++;
 
-      this.setState({availableBooks, borrowedBooks});
+    this.setState({ availableBooks, borrowedBooks });
   }
 
   handleLost = book => {
-      let borrowedBooks = [... this.state.borrowedBooks];
-      borrowedBooks = borrowedBooks.filter(b => {
-        return b.id !== book.id;
-      })
-      this.setState({borrowedBooks})
+    let borrowedBooks = [... this.state.borrowedBooks];
+    borrowedBooks = borrowedBooks.filter(b => {
+      return b.id !== book.id;
+    })
+    this.setState({ borrowedBooks })
   }
 
   render() {
@@ -112,24 +94,24 @@ class App extends Component {
           totalbooks={this.state.availableBooks.filter(c => c.value > 0).length}
         />
         <main className="container">
-        <div className="row">
-          <div className="col-6">       
-            <AvailableBooks
-              availableBooks={this.state.availableBooks}
-              onReset={this.handleReset}
-              onIncrement={this.handleIncrement}
-              onDecrement={this.handleDecrement}
-              onDelete={this.handleDelete}
-              onAdd={this.handleAdd}
-              onBorrow={this.handleBorrow}
-            />
+          <div className="row">
+            <div className="col-6">
+              <AvailableBooks
+                availableBooks={this.state.availableBooks}
+                onReset={this.handleReset}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onDelete={this.handleDelete}
+                onAdd={this.handleAdd}
+                onBorrow={this.handleBorrow}
+              />
             </div>
-            <div className="col-6">       
-            <BorrowedBooks
-            books={this.state.borrowedBooks}
-            onReturn={this.handleReturn}
-            onLost={this.handleLost}
-            />
+            <div className="col-6">
+              <BorrowedBooks
+                books={this.state.borrowedBooks}
+                onReturn={this.handleReturn}
+                onLost={this.handleLost}
+              />
             </div>
           </div>
         </main>

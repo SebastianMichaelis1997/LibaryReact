@@ -2,10 +2,28 @@ import React, { Component } from "react";
 
 class AvailableBook extends Component {
 
+  constructor() {
+    super();
+    console.log("App - Constrcutor");
+  }
+
+  componentDidMount() {
+    console.log("Komponente ist aufgesetzt");
+  }
+
+  componentWillUnmount() {
+    console.log("Komponente wird gelöscht");
+  }
+
+  componentDidUpdate() {
+    console.log("Komponente wurde geupdatet");
+  }
   render() {
+    console.log("Komponente wurde gerendert");
     return (
       <div>
-        //Buchtitel
+
+        //Anzeige Buchtitel
         <span>{this.props.book.name}</span>
         <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
         <button
@@ -30,7 +48,7 @@ class AvailableBook extends Component {
         <button
           onClick={() => this.props.onBorrow(this.props.book)}
           className="btn btn-warning btn-sm m-2"
-          disabled={this.props.book.value==0}
+          disabled={this.props.book.value == 0}
         >
           Lend
         </button>
@@ -46,7 +64,7 @@ class AvailableBook extends Component {
 
   formatCount() {
     const { value } = this.props.book;
-    return value === 0 ? "Zero" : value;
+    return value > 0 ? "Zero" : value;
   }
 }
 

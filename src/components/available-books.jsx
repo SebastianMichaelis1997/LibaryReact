@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Book from "./available-book";
 class AvailableBooks extends Component {
   render() {
+    console.log("Komponente wurde gerendert");
     const {
       onReset,
       availableBooks,
