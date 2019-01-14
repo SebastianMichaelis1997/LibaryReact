@@ -7,17 +7,30 @@ class BorrowedBooks extends Component {
       <div>
         <h3>Borrowed Books</h3>
 
-        {this.props.books.map((book) => {
+        {this.props.books.map(book => {
           return (
             <React.Fragment>
-              <span>{book.name}</span>
-              <button onClick={() => { onReturn(book) }} className="btn btn-primary btn-sm m-2">
-                Return
-            </button>
-              <button onClick={() => { onLost(book) }} className="btn btn-primary btn-sm m-2 badge-danger">
-                Lost
-            </button>
-            </React.Fragment>);
+              <div>
+                <span>{book.name}</span>
+                <button
+                  onClick={() => {
+                    onReturn(book);
+                  }}
+                  className="btn btn-primary btn-sm m-2"
+                >
+                  Return
+                </button>
+                <button
+                  onClick={() => {
+                    onLost(book);
+                  }}
+                  className="btn btn-primary btn-sm m-2 badge-danger"
+                >
+                  Lost
+                </button>
+              </div>
+            </React.Fragment>
+          );
         })}
       </div>
     );

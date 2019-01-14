@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class AvailableBook extends Component {
-
   constructor() {
     super();
     console.log("App - Constrcutor");
@@ -22,8 +21,7 @@ class AvailableBook extends Component {
     console.log("Komponente wurde gerendert");
     return (
       <div>
-
-        //Anzeige Buchtitel
+        {/*Anzeige Buchtitel*/}
         <span>{this.props.book.name}</span>
         <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
         <button
@@ -35,6 +33,7 @@ class AvailableBook extends Component {
         <button
           onClick={() => this.props.onDecrement(this.props.book)}
           className="btn btn-secondary btn-sm"
+          disabled={this.props.book.value == 0}
         >
           Decrement
         </button>
@@ -44,7 +43,6 @@ class AvailableBook extends Component {
         >
           Delete
         </button>
-
         <button
           onClick={() => this.props.onBorrow(this.props.book)}
           className="btn btn-warning btn-sm m-2"
@@ -64,7 +62,7 @@ class AvailableBook extends Component {
 
   formatCount() {
     const { value } = this.props.book;
-    return value > 0 ? "Zero" : value;
+    return value === 0 ? "Zero" : value;
   }
 }
 
